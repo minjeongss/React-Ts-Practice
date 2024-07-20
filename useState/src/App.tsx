@@ -1,6 +1,6 @@
-import LikeCountButton from './LikeCountButton.tsx'
-import InfoInput from './InfoInput.tsx'
-import InitialFinction from './InitialFunction.tsx'
+import LikeCountButton from './LikeCountButton.tsx';
+import InfoInput from './InfoInput.tsx';
+import InitialFinction from './InitialFunction.tsx';
 const App = () => {
   return (
     <>
@@ -8,7 +8,7 @@ const App = () => {
       <InfoInput />
       <InitialFinction />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
