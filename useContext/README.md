@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# useContext를 분석해보자 🎯
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 참고주소
 
-Currently, two official plugins are available:
+- [useContext](https://ko.react.dev/reference/react/useContext#usecontext)
+- [typescript에서 useContext 사용법](https://ko.react.dev/learn/typescript#typing-usecontext)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 정의
 
-## Expanding the ESLint configuration
+컴포넌트를 통해 props를 저달할 필요 없이 컴포넌트 트리를 따라 데이터를 전달하는 기술이다. 이를 통해 Props Driling을 방지한다.
+Provider 컴포넌트를 생성할 때 사용되며, 자식 컴포넌트에서 값을 소비하는 Hook을 생성할 때 사용된다.
+context에서 제공한 값의 타입은 createContext 호출에 전달된 값에서 추론된다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 사용법
 
-- Configure the top-level `parserOptions` property like this:
+1. 선언
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```ts
+type Theme = 'light' | 'dark' | 'system';
+export const ThemeContext = createContext<Theme>('system');
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. 전달(Provider 컴포넌트 생성)
+
+```ts
+return (
+  <ThemeContext.Provider value={theme}>
+    <UseTheme />
+  </ThemeContext.Provider>
+);
+```
+
+3. 사용(자식 컴포넌트에서 값 소비)
+
+```ts
+const theme = useContext(ThemeContext);
+```
+
+## 실습: App.tsx+UseTheme.tsx
+
+- 부모: App.tsx
+- 자식: UseTheme.tsx
