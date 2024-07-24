@@ -38,6 +38,57 @@ return (
 const theme = useContext(ThemeContext);
 ```
 
+4.  업데이트
+
+- 선언
+
+```ts
+type Theme = 'light' | 'dark';
+interface ThemeContextType {
+  theme: Theme;
+  setTheme: Dispatch<SetStateAction<Theme>>;
+}
+export const ThemeContext = createContext<ThemeContextType>({ theme: 'light', setTheme: () => {} });
+```
+
+- 루트 컴포넌트에서 Provider에서 전달
+
+```ts
+<ThemeContext.Provider value={{ theme, setTheme }}>
+  <Button />
+  <UseTheme />
+</ThemeContext.Provider>
+```
+
+- 소비하는 컴포넌트에서 값 업데이트
+
+```ts
+export default function Button() {
+  const { theme, setTheme } = useContext(ThemeContext);
+  return (
+    <button
+      onClick={() => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+      }}
+    >
+      Change the Theme!!
+    </button>
+  );
+}
+```
+
+5.  context 오버로딩
+
+```ts
+<ThemeContext.Provider value={{ theme, setTheme }}>
+  <Button />
+  <UseTheme />
+  <ThemeContext.Provider value={{ theme: 'dark', setTheme }}>
+    <DarkUseTheme />
+  </ThemeContext.Provider>
+</ThemeContext.Provider>
+```
+
 ## 실습: App.tsx+UseTheme.tsx
 
 - 부모: App.tsx

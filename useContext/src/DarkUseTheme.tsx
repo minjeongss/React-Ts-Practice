@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from './App';
 
-function UseTheme() {
+function DarkUseTheme() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -9,4 +9,4 @@ function UseTheme() {
     </>
   );
 }
-export default UseTheme;
+export default DarkUseTheme;
