@@ -16,13 +16,31 @@
 
 ## 라이프 사이클 분류
 
+### 함수형 컴포넌트
+
+![FunctionLifrCycle](./FunctionLifeCycle.png)
+
 ### 클래스형 컴포넌트
 
 ![ClassLifrCycle](./ClassLifeCycle.png)
 
-### 함수형 컴포넌트
+## 함수형 컴포넌트
 
-![FunctionLifrCycle](./FunctionLifeCycle.png)
+리액트 생태계는 16.8 버전에서 Hook이 도입되며, 라이프 사이클 역시 변경되어 위의 내용은 legacy가 되었다.
+
+해당 내용은 **useEffect**가 대체하게 되었다.
+
+### 1. 생성(mount)
+
+- componentDidMount
+
+### 2. 업데이트(update)
+
+- componentDidUpdate
+
+### 3. 제거(unmount)
+
+- componentWillUnmount
 
 ## 클래스형 컴포넌트
 
@@ -45,21 +63,3 @@
 ### 3. 제거(unmount)
 
 - ComponentWillUnmount
-
-## 함수형 컴포넌트
-
-리액트 생태계는 16.8 버전에서 Hook이 도입되며, 라이프 사이클 역시 변경되어 위의 내용은 legacy가 되었다.
-
-해당 내용은 useEffect가 대체하게 되었다.
-
-### 1. 생성(mount)
-
-- componentDidMount
-
-### 2. 업데이트(update)
-
-- componentDidUpdate
-
-### 3. 제거(unmount)
-
-- componentWillUnmount
