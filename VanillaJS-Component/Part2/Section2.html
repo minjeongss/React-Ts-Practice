@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 작동 과정 -->
+    <!-- 렌더링: setup()+render()+template()+setEvent() -->
+    <!-- state 변경: setEvent()+setState()+render() -->
+    <div id="app"></div>
+    <script>
+      class Component {
+        //? constructor 위에 정의하는 이유
+        // public의 개념으로 선언하는 것인가?
+        //* 모든 인스턴스 필드를 명시적으로 드러내, 가독성+초기화+TS 호환성 가능
+
+        //필드 선언
+        $target;
+        state;
+        constructor($target) {
+          this.$target = $target;
+          this.setup();
+          this.render();
+        }
+
+        setup() {}
+        template() {
+          return '';
+        }
+        render() {
+          //   this.$target.innerHTML = this.template();
+          this.$target.innerHTML = this.template();
+          this.setEvent();
+        }
+        setEvent() {}
+        setState(newState) {
+          this.state = { ...this.state, ...newState };
+          this.render();
+        }
+      }
+
+      class App extends Component {
+        setup() {
+          this.state = { items: ['item1', 'item2', 'item3', 'item4'] };
+        }
+        template() {
+          const { items } = this.state;
+          return `
+            <ul>
+                ${items.map((elem) => `<li>${elem}</li>`).join('')}
+            </ul>
+            <button id="append">요소 추가</button>
+          `;
+        }
+        setEvent() {
+          this.$target.querySelector('#append').addEventListener('click', () => {
+            const { items } = this.state;
+            this.setState({ items: [...items, `item${items.length + 1}`] });
+          });
+        }
+      }
+
+      new App(document.querySelector('#app'));
+    </script>
+  </body>
+</html>
