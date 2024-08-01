@@ -2,7 +2,7 @@
 
 ## 1. 상태관리-컴포넌트
 
-### 이전
+### (1) 이전
 
 > JSP, PHP, ASP
 
@@ -11,7 +11,7 @@
   - 클라이언트(브라우저): 데이터를 정교하게 관리할 필요가 없다
 - DOM을 직접적으로 다루는 행위가 많다
 
-### 현재
+### (2) 현재
 
 > Angular(CSR 시작) - React(컴포넌트 기반 개발) - Vue(Angular+React)
 
@@ -25,17 +25,27 @@
 
 DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 state에 종속되도록 설정한다. 이때, state가 변경되면 렌더링이 발생하게 된다.
 
-(1) Class 없는 구현
+### (1) Class 없는 구현
 
-- Part2 > Section1.html
+#### 구조
 
-(2) Class로 구현
+```
+├── Part2
+    └── Function.html
+```
 
-- Part2 > Section2.html
+### (2) Class로 구현
 
-(3) 모듈화
+#### 구조
 
-- 구조
+```
+├── Part2
+    └── Class.html
+```
+
+### (3) 모듈화
+
+#### 구조
 
 ```
 ├── index.html
@@ -48,6 +58,7 @@ DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 sta
 
 ```
 
-- 작동 순서
-  - index.html > app.js
-  - app.js > Items.js > Component.js
+#### 작동 순서
+
+- index.html > app.js
+- app.js > Items.js > Component.js
