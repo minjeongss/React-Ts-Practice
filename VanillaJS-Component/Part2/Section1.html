@@ -6,7 +6,6 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 state에 종속되도록 설정 -->
     <div id="app"></div>
     <script>
       //값 가져오기
@@ -35,7 +34,7 @@
         state = { ...state, ...newState }; //! state는 setState로만 변경
 
         //? spread 연산자 없이 사용해도 문제 없는데 위의 방식을 선택하는 이유
-        // 다른 상태 key에 해당하는 값이 존재하는 경우를 대비할 수 있으며, 상태 객체 관리의 일관성을 유지할 수 있어서!
+        //* 다른 상태 key에 해당하는 값이 존재하는 경우를 대비할 수 있으며, 상태 객체 관리의 일관성을 유지할 수 있어서!
         //state = newState;
 
         render(); //! state 변경되면 render() 실행
