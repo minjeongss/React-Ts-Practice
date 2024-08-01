@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 state에 종속되도록 설정 -->
+    <div id="app"></div>
+    <script>
+      //값 가져오기
+      const $app = document.querySelector('#app');
+      let state = { items: ['item1', 'item2', 'item3', 'item4'] };
+
+      //render 함수
+      const render = () => {
+        console.log('STEP2');
+        const { items } = state; //! {}가 없으면 items을 key로 값에 한 번 더 접근해야 함(items['items'])
+        $app.innerHTML = `
+            <ul>
+                ${items.map((elem) => `<li>${elem}</li>`).join('')}
+            </ul>
+            <button id="append">요소 추가</button>
+        `; //! join을 하지 않으면 ,로 li들이 연결되는 문제 발생
+        document.querySelector('#append').addEventListener('click', () => {
+          setState({ items: [...items, `item${items.length + 1}`] });
+        });
+        console.log('STEP3');
+      };
+
+      //useState 함수
+      const setState = (newState) => {
+        console.log('STEP4');
+        state = { ...state, ...newState }; //! state는 setState로만 변경
+
+        //? spread 연산자 없이 사용해도 문제 없는데 위의 방식을 선택하는 이유
+        // 다른 상태 key에 해당하는 값이 존재하는 경우를 대비할 수 있으며, 상태 객체 관리의 일관성을 유지할 수 있어서!
+        //state = newState;
+
+        render(); //! state 변경되면 render() 실행
+        console.log('STEP5');
+      };
+      console.log('STEP1');
+      render();
+
+      //* 작동 순서
+      //* 렌더링: 1>2>3
+      //* state 변경: 4>2>3>5(이후 반복)
+    </script>
+  </body>
+</html>
