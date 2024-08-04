@@ -62,3 +62,28 @@ DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 sta
 
 - index.html > app.js
 - app.js > Items.js > Component.js
+
+## 3. 이벤트 처리
+
+### (1) 모든 하위 요소에 이벤트 등록하기
+
+```js
+setEvent() {
+    //요소 추가
+    this.$target.querySelector('.addBtn').addEventListener('click', () => {
+      const { items } = this.state;
+      this.setState({ items: [...items, `item${items.length + 1}`] });
+    });
+
+    //요소 삭제
+    this.$target.querySelectorAll('.deleteBtn').forEach((deleteBtn) => {
+      deleteBtn.addEventListener('click', ({ target }) => {
+        const items = [...this.state.items];
+        items.splice(target.dataset.index, 1);
+        this.setState({ items });
+      });
+    });
+  }
+```
+
+### (2) 하나의 상위 요소에 이벤트 등록하기(이벤트 위임)
