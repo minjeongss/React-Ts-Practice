@@ -130,3 +130,30 @@ addEventListener의 경우, 추가적인 할당을 할수록 중첩되는 형태
 ```
 
 ### (3) 이벤트 버블링 추상화
+
+#### Items.js
+
+```js
+setEvent() {
+    this.addEvent('click', '.addBtn', ({ target }) => {
+      const { items } = this.state;
+      this.setState({ items: [...items, `item${items.length + 1}`] });
+    });
+    this.addEvent('click', '.deleteBtn', ({ target }) => {
+      const items = [...this.state.items];
+      items.splice(target.dataset.index, 1);
+      this.setState({ items });
+    });
+  }
+```
+
+#### Component.js
+
+```js
+  addEvent(eventType, selector, callback) {
+    this.$target.addEventListener(eventType, (event) => {
+      if (!event.target.closest(selector)) return false;
+      callback(event);
+    });
+  }
+```
