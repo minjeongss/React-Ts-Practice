@@ -30,7 +30,7 @@ DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 sta
 #### 구조
 
 ```
-├── Part2
+├── Test_state-setState-render
     └── Function.html
 ```
 
@@ -39,7 +39,7 @@ DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 sta
 #### 구조
 
 ```
-├── Part2
+├── Test_state-setState-render
     └── Class.html
 ```
 
