@@ -113,6 +113,10 @@ setEvent() {
 기존과 동일하게 render()에 setEvent()를 위치하게 되면, 추가를 진행할 때 렌더링 된 수만큼 요소가 추가되는 현상이 발생한다.
 고로 생성자 부분에 setEvent()를 등록하면 해당 문제가 발생하지 않는다.
 
+addEventListener의 경우, 추가적인 할당을 할수록 중첩되는 형태로 구성이 된다. 요소 추가 버튼을 누르면 setState() > render() > setEvent()로 작동이 진행된다.
+
+이때, 요소 추가 버튼에 할당된 setEvent()는 클릭을 할수록 2배>4배>8배로 증가하게 되어서 render()가 아닌 constructor로 위치를 이동해야 한다.
+
 ```js
   constructor($target) {
     //생략
@@ -124,3 +128,5 @@ setEvent() {
     - this.render();
   }
 ```
+
+### (3) 이벤트 버블링 추상화
