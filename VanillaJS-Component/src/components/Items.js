@@ -22,19 +22,18 @@ export default class Items extends Component {
         `;
   }
   setEvent() {
-    //요소 추가
-    this.$target.querySelector('.addBtn').addEventListener('click', () => {
-      const { items } = this.state;
-      this.setState({ items: [...items, `item${items.length + 1}`] });
-    });
+    this.$target.addEventListener('click', ({ target }) => {
+      const items = [...this.state.items];
 
-    //요소 삭제
-    this.$target.querySelectorAll('.deleteBtn').forEach((deleteBtn) => {
-      deleteBtn.addEventListener('click', ({ target }) => {
-        const items = [...this.state.items];
+      //요소 추가
+      if (target.classList.contains('addBtn')) {
+        this.setState({ items: [...items, `item${items.length + 1}`] });
+      }
+      //요소 삭제
+      if (target.classList.contains('deleteBtn')) {
         items.splice(target.dataset.index, 1);
         this.setState({ items });
-      });
+      }
     });
   }
 }

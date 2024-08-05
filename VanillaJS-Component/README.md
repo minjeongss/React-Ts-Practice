@@ -87,3 +87,40 @@ setEvent() {
 ```
 
 ### (2) 하나의 상위 요소에 이벤트 등록하기(이벤트 위임)
+
+#### Items.js
+
+```js
+setEvent() {
+    this.$target.addEventListener('click', ({ target }) => {
+      const items = [...this.state.items];
+
+      //요소 추가
+      if (target.classList.contains('addBtn')) {
+        this.setState({ items: [...items, `item${items.length + 1}`] });
+      }
+      //요소 삭제
+      if (target.classList.contains('deleteBtn')) {
+        items.splice(target.dataset.index, 1);
+        this.setState({ items });
+      }
+    });
+  }
+```
+
+#### Component.js
+
+기존과 동일하게 render()에 setEvent()를 위치하게 되면, 추가를 진행할 때 렌더링 된 수만큼 요소가 추가되는 현상이 발생한다.
+고로 생성자 부분에 setEvent()를 등록하면 해당 문제가 발생하지 않는다.
+
+```js
+  constructor($target) {
+    //생략
+    + this.setEvent();
+    this.render();
+  }
+  render() {
+    this.$target.innerHTML = this.template();
+    - this.render();
+  }
+```
