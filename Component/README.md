@@ -1,5 +1,9 @@
 # Vanilla Javascript로 웹 컴포넌트 만드는 방법에 대해 분석해보자!
 
+## 참고 주소
+
+- [bind](https://velog.io/@from_numpy/Javascript-Binding%EA%B3%BC-%ED%95%A8%EA%BB%98-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-apply-call-bind)
+
 ## 1. 상태관리-컴포넌트
 
 ### (1) 이전
@@ -194,3 +198,53 @@ setEvent() {
 ```
 
 ### (2) 작동 순서
+
+⚠️ console.log로 순서를 보며 정확한 수정이 요구됨 ⚠️
+
+#### 초기 상태
+
+0. index.html
+
+- main.js
+- App.js > Component를 상속
+
+1. Component.js의 constructor
+
+- target, props 등록
+- setup
+- setEvent
+- render
+  - template
+  - mount
+
+2. App.js
+
+- setup: 기본값 state 설정
+- render
+  - template
+  - mount: target, props 전달
+    - ItemAppender.js
+    - Items.js
+    - ItemsFilter.js
+
+3. ItemAppender.js, Items.js, ItemsFilter.js
+
+#### state 변경
+
+0. App.js를 부모 컴포넌트로 설정
+1. ItemAppender.js
+
+- setEvent
+- 부모에서 받은 addItem을 다시 부모로 전달
+
+2. App.js
+
+- addItem
+  - setState
+
+3. Component.js
+
+- setState
+- **render** >>>>>>>> 이 부분에서 전체 화면이 다시 그려지게 됨
+  - template
+  - mount
