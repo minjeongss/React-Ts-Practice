@@ -61,7 +61,7 @@ DOM을 직접적으로 다루지 않고, 브라우저 출력되는 내용은 sta
 #### 작동 순서
 
 - index.html > app.js
-- app.js > Items.js > Component.js
+- **app.js > Component.js > Items.js**
 
 ## 3. 이벤트 처리
 
@@ -157,3 +157,40 @@ setEvent() {
     });
   }
 ```
+
+## 4. 컴포넌트 분할
+
+### (1) 구조
+
+- 추가
+  - `App.js`: main에서 App 컴포넌트를 마운트하기 위해
+  - `ItemAppender.js`
+  - `ItemFilter.js`
+- 변경
+  - app.js > `main.js`: js가 시작하는 시점(=entry point)
+  - Component.js
+    - props() 추가
+      - 위치
+        constructor에서 props 할당
+      - 역할
+        부모 컴포넌트에서 자식 컴포넌트로 상태 또는 메소드를 전달
+    - mounted() 추가
+      - 위치
+        클래스의 메소드와 rnder() 내부에 선언
+      - 역할
+        render 이후에 추가적인 기능 수행
+
+```
+├── index.html
+└── src
+    ├── App.js #추가
+    ├── main.js #변경
+    ├── components
+        ├── ItemAppender.js #추가
+        ├── ItemFilter.js #추가
+    │   └── Items.js
+    └── core
+        └── Component.js
+```
+
+### (2) 작동 순서
