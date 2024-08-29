@@ -223,6 +223,14 @@ let example: mappedType = {
     }
     const buttons = getElement<HTMLButtonElement>('tab-buttons');
     ```
+  - 태그의 null 여부 관리
+    확인 빈도와 중복 코드를 줄이며, null 여부 확인 가능
+    ```ts
+    const $loader = document.querySelector('.loader') as HTMLDivElement | null;
+    if (!$loader) {
+      throw new Error('Loader element not found');
+    }
+    ```
 
 - Event 요소
   ```ts
