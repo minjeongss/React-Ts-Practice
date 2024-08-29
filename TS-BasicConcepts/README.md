@@ -39,7 +39,7 @@ npx tsc --init //tsconfig.json 생성
 
 - 직접 선언
 - 타입 단언
-  - <type>
+  - < type >
   - as type
 - type(타입 별칭)
 - interface
@@ -208,6 +208,20 @@ let example: mappedType = {
     - as 사용
     ```ts
     const contents = document.querySelectorAll('.tab-content') as NodeListOf<Element>;
+    ```
+  - 객체 이용한 태그 관리
+    ```ts
+    const elements = {
+      buttons: document.getElementById('tab-buttons') as HTMLDivElement,
+    };
+    const value = elements.buttons.value;
+    ```
+  - 제너레이터 이용한 태그 관리
+    ```ts
+    function getElement<T extends HTMLElement>(selector: string): T | null {
+      return document.querySelector(selector);
+    }
+    const buttons = getElement<HTMLButtonElement>('tab-buttons');
     ```
 
 - Event 요소
