@@ -9,8 +9,22 @@
   let id2: number | string[] = 1; //숫자 또는 문자열 배열
   console.log(id, id2);
 
+  //rest 파라미터
+  function restTest(a: string, b: number, ...rest: (number | string)[]) {
+    console.log('Rest Test1: ', a, b, rest);
+  }
+  function restTest2(...rest: [a: string, b: number, ...(number | string)[]]) {
+    console.log('Rest Test2: ', rest);
+  }
+  function restTest3(...rest: (number | string)[]) {
+    console.log('Rest Test3: ', rest);
+  }
+  restTest('test', 1, 2, 3);
+  restTest2('test', 1, 2, 3);
+  restTest3('test', 1, 2, 3);
+
   //매개변수
-  //객체
+  //1: 객체
   type Person = {
     student: string;
     age: number;
@@ -20,7 +34,7 @@
   }
   printInfo({ student: 'kim', age: 10 });
 
-  //배열
+  //2: 배열
   type MyArray = [number, number];
   function MyFn([a, b]: MyArray) {
     console.log(a, b);
@@ -34,15 +48,15 @@
   add(1, 2, 3, 4);
 
   //narrowing(범위 줄이기)===타입가드
-  //범위 확인
-  //일반 값
+  //(1) 범위 확인
+  //1: 일반 값
   function print(x: number | string) {
     if (typeof x === 'number') {
     } else {
     }
   }
   print(1);
-  //type
+  //2: type
   type Fish = { swim: string };
   type Bird = { fly: string };
   function move(animal: Fish | Bird) {
@@ -52,7 +66,7 @@
   }
   move({ swim: 'swim' });
 
-  //class
+  //3: class
   class Animal {
     makeSound() {
       console.log('소리 낸다!');
@@ -80,7 +94,7 @@
   let dog = new Dog();
   makeSound(dog);
 
-  //범위 설정
+  //(2) 범위 설정
   let sample: any = 'HI';
   let length = (sample as string).length;
   console.log(length);

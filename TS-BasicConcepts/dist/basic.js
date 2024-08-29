@@ -6,6 +6,18 @@
     let id = [1, 2, 3];
     let id2 = 1;
     console.log(id, id2);
+    function restTest(a, b, ...rest) {
+        console.log('Rest Test1: ', a, b, rest);
+    }
+    function restTest2(...rest) {
+        console.log('Rest Test2: ', rest);
+    }
+    function restTest3(...rest) {
+        console.log('Rest Test3: ', rest);
+    }
+    restTest('test', 1, 2, 3);
+    restTest2('test', 1, 2, 3);
+    restTest3('test', 1, 2, 3);
     function printInfo({ student, age }) {
         console.log(student, age);
     }

@@ -100,9 +100,25 @@ type P = keyof Point; //'X' | 'Y'. 즉, key를 유니온으로 생성
 
 배열의 값의 타입과 길이를 고정한다.
 
+- 모두 지정
+
 ```ts
 let person: [string, number, boolean];
 person = ['', 1, true];
+```
+
+- 일부 지정(rest 파라미터)
+
+```ts
+function restTest(a: string, b: number, ...rest: (number | string)[]) {
+  console.log('Rest Test1: ', a, b, rest);
+}
+function restTest2(...rest: [a: string, b: number, ...(number | string)[]]) {
+  console.log('Rest Test2: ', rest);
+}
+function restTest3(...rest: (number | string)[]) {
+  console.log('Rest Test3: ', rest);
+}
 ```
 
 ### 매핑된 타입(mapped type)
@@ -154,8 +170,57 @@ let example: mappedType = {
   - export, import 필요O
   - 지역적으로 내부에서 사용
 
+### 타입을 class에서 활용하는 방법
+
+- 접근 제한자
+  - public: 어디서나 접근 가능
+  - protected
+    - 클래스 및 클래스 인스턴스 또는 서브 클래스에서 접근 가능
+    - 서브 클래스 인스턴스 접근 불가능
+  - private
+    - 클래스만 접근 가능
+    - 클래스 인스턴스, 서브 클래스, 서브 클래스 인스턴스 접근 불가능
+- static
+  - 객체 생성하지 않고, 클래스 직접 호출
+  - 객체 인스턴스의 영향을 받지 않음! ⚠️
+
 ### DOM에서 타입 활용하는 방법
 
 - HTML 요소
+
+  - 하나의 태그
+
+    - <> 사용
+      ```ts
+      const buttons = <HTMLDivElement>document.getElementById('tab-buttons');
+      ```
+    - as 사용
+
+      ```ts
+      const buttons = document.getElementById('tab-buttons') as HTMLDivElement;
+      ```
+
+  - 여러 개의 태그
+    - <> 사용
+    ```ts
+    const contents = document.querySelectorAll<HTMLDivElement>('.tab-content');
+    ```
+    - as 사용
+    ```ts
+    const contents = document.querySelectorAll('.tab-content') as NodeListOf<Element>;
+    ```
+
 - Event 요소
+  ```ts
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+  };
+  ```
 - null 또는 undefined를 방지
+  - undefined
+  ```ts
+  const pattern = patterns[input.id];
+  if (pattern) {
+    isValid = pattern.test(input.value);
+  }
+  ```
