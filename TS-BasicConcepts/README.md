@@ -1,5 +1,13 @@
 # TypeScript 기본 문법을 분석해보자 🎯
 
+## 목차
+
+[1. 환경 설정](#환경-설정)
+[2. 타입 선언 방법](#타입-선언-방법)
+[3. 타입 특성](#타입-특성)
+[4. 타입 문법 활용](#타입-문법-활용)
+[5. 타입 기능 활용](#타입-기능-활용)
+
 ## 환경 설정
 
 - json 생성 및 설치
@@ -121,6 +129,43 @@ function restTest3(...rest: (number | string)[]) {
 }
 ```
 
+### 제너릭(generic)
+
+- 일반 형태
+  ```ts
+  function test<T>(arg: T): T {
+    return arg;
+  }
+  const test = <T>(arg: T): T => {
+    return arg;
+  };
+  ```
+- 유틸리티(Utility) 타입 적용
+  ```ts
+  type MyUnion = string | number | boolean | null;
+  const test_union: Exclude<MyUnion, boolean | null> = 'Hello';
+  ```
+- Infer 키워드 적용
+  ```ts
+  type ArrayItemType<T> = T extends (infer I)[] ? I : null;
+  const numbers = [1, 2, 3];
+  const test_number: ArrayItemType<typeof numbers> = 123;
+  ```
+- 클래스(Class) 적용
+  ```ts
+  class Basket<T extends string> {
+    public items: T[];
+    constructor(...rest: T[]) {
+      this.items = rest;
+    }
+    putItem(item: T) {
+      this.items.push(item);
+    }
+  }
+  const fruitBasket = new Basket<string>('Apple', 'Lemon');
+  fruitBasket.putItem('Cherry');
+  ```
+
 ### 매핑된 타입(mapped type)
 
 제네릭을 활용해 기존의 타입을 바탕으로 새로운 타입을 만든다.
@@ -151,8 +196,6 @@ let example: mappedType = {
   b: true,
 };
 ```
-
-### 제너릭(generic)
 
 ## 타입 기능 활용
 
