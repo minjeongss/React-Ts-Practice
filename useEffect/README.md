@@ -91,6 +91,8 @@ useEffect(() => {
 }, [clicked]);
 ```
 
+이때, Strict Mode에 의해 개발 환경에서 useEffect가 두 번 호출되는 문제가 존재해서 main.tsx의 `<React.StrictMode>, </React.StrictMode>`을 주석처리했음에 유의해야 한다.
+
 ## 실습
 
 1. 데이터 값이 변화됨을 감지하기: `Basic.tsx`
