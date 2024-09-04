@@ -74,8 +74,26 @@ useEffect(() => {
 }, []);
 ```
 
+4. 초기 렌더링 변화 감지 막기
+
+```ts
+const isMounted = useRef<boolean>(false);
+useEffect(() => {
+  const alertClick = () => {
+    alert(`Click이 ${clicked}로 변경되었습니다! 🚀`);
+  };
+  if (isMounted.current) {
+    alertClick();
+  } else {
+    isMounted.current = true;
+  }
+  console.log('K');
+}, [clicked]);
+```
+
 ## 실습
 
 1. 데이터 값이 변화됨을 감지하기: `Basic.tsx`
 2. 컴포넌트 언마운트되거나 업데이트될 때 특정 동작 수행하기: `CleanUp.tsx`
 3. 외부에서 데이터 가져오기: `FetchData.tsx`
+4. 초기 렌더링 변화 감지 막기: `BlockFirstRendering.tsx`
