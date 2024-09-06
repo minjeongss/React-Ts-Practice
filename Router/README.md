@@ -23,6 +23,25 @@ yarn add react-router-dom
 
 ## 라우터 설정
 
+### 0. 요소
+
+#### 환경 설정
+
+- BrowserRouter
+- Routes, Route
+- Outlet
+
+#### 이동
+
+- Link
+- useNavigate
+
+#### 위치 확인
+
+- useLocation
+- useParams
+- useSearchParams
+
 ### 1. 환경 설정
 
 #### BrowserRouter
