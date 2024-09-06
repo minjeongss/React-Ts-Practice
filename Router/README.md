@@ -25,7 +25,9 @@ yarn add react-router-dom
 
 ### 1. 환경 설정
 
-- BrowserRouter: main.tsx
+#### BrowserRouter
+
+> main.tsx
 
 ```tsx
 createRoot(document.getElementById("root")!).render(
@@ -37,7 +39,9 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 
-- Routes, Route: App.tsx
+#### Routes, Route
+
+> App.tsx
 
 ```tsx
 function App() {
@@ -52,8 +56,11 @@ function App() {
 }
 ```
 
-- Outlet: App.tsx, ProductPage.tsx, DetailProduct.tsx
-  중첩된 라우터 설정
+#### Outlet
+
+> App.tsx, ProductPage.tsx, DetailProduct.tsx
+
+- 중첩된 라우터 설정
 
 ```tsx
 function App() {
@@ -79,7 +86,9 @@ const ProductPage = () => {
 
 ### 2. 이동
 
-- Link: Header.jsx
+#### Link
+
+> Header.jsx
 
 ```tsx
 const Header = () => {
@@ -92,7 +101,9 @@ const Header = () => {
 };
 ```
 
-- useNavigate: NavigateButton.tsx
+#### useNavigate
+
+> NavigateButton.tsx
 
 ```tsx
 const NavigateButton = () => {
@@ -103,7 +114,9 @@ const NavigateButton = () => {
 
 ### 3. 위치 확인
 
-- useLocation: CurrentPath.tsx
+#### useLocation
+
+> CurrentPath.tsx
 
 ```tsx
 const CurrentPath = () => {
@@ -112,11 +125,15 @@ const CurrentPath = () => {
 };
 ```
 
-- useParams: Userpage.tsx
-  user 뒤에 숫자에 해당하는 요소를 id에 할당
-  ```
-  http://localhost:5173/user/1
-  ```
+#### useParams
+
+> Userpage.tsx
+
+- user 뒤에 숫자에 해당하는 요소를 id에 할당
+
+```
+http://localhost:5173/user/1
+```
 
 ```tsx
 const UserPage = () => {
@@ -133,16 +150,22 @@ const UserPage = () => {
 };
 ```
 
-- useSearchParams: DetailProduct.tsx
-  - 기본
-  ```
-  http://localhost:5173/product
-  ```
-  - Searchparams set 진행
-    ? 뒤에 id가 key인 쿼리 스트링을 찾아 변수 id에 할당
-  ```
-  http://localhost:5173/product?id=1
-  ```
+#### useSearchParams
+
+> DetailProduct.tsx
+
+- 기본
+
+```
+http://localhost:5173/product
+```
+
+- Searchparams set 진행
+  - ? 뒤에 id가 key인 쿼리 스트링을 찾아 변수 id에 할당
+
+```
+http://localhost:5173/product?id=1
+```
 
 ```tsx
 const DetailProduct = () => {
