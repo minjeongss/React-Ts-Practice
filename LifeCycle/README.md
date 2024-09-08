@@ -26,10 +26,6 @@
 
 ## 함수형 컴포넌트
 
-리액트 생태계는 16.8 버전에서 Hook이 도입되며, 라이프 사이클 역시 변경되어 클래스형 컴포넌트는 legacy가 되었다.
-
-해당 내용은 **useEffect**가 대체하게 되었다. 하지만! 실무에서 활용될 수 있는 지식이기에 분석을 진행했다.
-
 ### 1. 생성(mount)
 
 - componentDidMount
@@ -43,6 +39,10 @@
 - componentWillUnmount
 
 ## 클래스형 컴포넌트
+
+리액트 생태계는 16.8 버전에서 Hook이 도입되며, 라이프 사이클 역시 변경되어 클래스형 컴포넌트는 legacy가 되었다.
+
+해당 내용은 **useEffect**가 대체하게 되었다. 하지만! 실무에서 활용될 수 있는 지식이기에 분석을 진행했다.
 
 ### 1. 생성(mount)
 
@@ -63,3 +63,64 @@
 ### 3. 제거(unmount)
 
 - ComponentWillUnmount
+
+## 라이프 사이클 실제 예시
+
+- 참고
+
+  - ComponentLifeCycle.jsx
+  - useAPI.js
+
+### 생성(mount)
+
+1. 컴포넌트 초기화
+
+```jsx
+const { id } = useParams();
+```
+
+- 상태, 속성 초기화
+
+2. 훅 초기화
+
+```jsx
+const user = useAPI({ id });
+```
+
+- useAPI가 id로 호출되어, data가 빈 문자열로 초기화
+- return된 data를 전달받아 user도 빈 문자열로 초기화
+
+3. 초기 렌더링
+
+4. componentDidMount 완료
+
+### 생성 후, 업데이트 전
+
+1. useEffect 시행
+
+```jsx
+useEffect(() => {
+  const fetchData = async () => {...};
+  fetchData();
+}, [id]);
+```
+
+- 컴포넌트가 렌더링된 후, useEffect 실행
+
+2. useEffect 도중 데이터 업데이트 진행
+
+```jsx
+const fetchData = async () => {
+  const url = `https://jsonplaceholder.typicode.com/users/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  setData(JSON.stringify(data));
+};
+```
+
+- setData를 통해 상태 업데이트
+
+### 업데이트(update)
+
+1. setData가 상태 업데이트
+2. ComponentLifeCycle 재렌더링
