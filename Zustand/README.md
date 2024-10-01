@@ -74,8 +74,82 @@ const InitTodo = () => {
 - 리스트 삭제: useTodoStore의 actions 중 removeTodo
 - 리스트 전체 삭제: useTodoStore의 actions 중 initTodo
 
+```ts
+const useTodoStore = create<TodoStore>((set) => ({
+  todos: [], // 초기값
+  actions: {
+    addTodo: (text) =>
+      set((state) => ({
+        todos: [...state.todos, { id: Date.now(), text, completed: false }],
+      })),
+    toggleTodo: (id) =>
+      set((state) => ({
+        todos: state.todos.map((e) =>
+          e.id === id ? { ...e, completed: !e.completed } : e
+        ),
+      })),
+    removeTodo: (id) =>
+      set((state) => ({ todos: state.todos.filter((e) => e.id !== id) })),
+    initTodo: () => set({ todos: [] }),
+  },
+}));
+```
+
 ### 기능 활용
 
 - 리스트 추가: AppTodo.tsx
+
+```tsx
+const AddTodo = () => {
+  const { addTodo } = useTodoStore((state) => state.actions);
+  const [text, setText] = useState("");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!text.trim()) return; // 공백 제거
+    addTodo(text);
+    setText("");
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button type="submit">Add!</button>
+    </form>
+  );
+};
+```
+
 - 리스트 토글 및 삭제: TodoList.tsx, TodoItem.tsx
+
+```tsx
+const TodoItem = ({ todo }: { todo: Todo }) => {
+  const { removeTodo, toggleTodo } = useTodoStore((state) => state.actions);
+  return (
+    <li>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => toggleTodo(todo.id)}
+      />
+      <p>{todo.text}</p>
+      <button onClick={() => removeTodo(todo.id)}>Remove!</button>
+    </li>
+  );
+};
+```
+
 - 리스트 전체 삭제: InitTodo.tsx
+
+```tsx
+const InitTodo = () => {
+  const { initTodo } = useTodoStore((state) => state.actions);
+  return (
+    <button type="button" onClick={() => initTodo()}>
+      Reset!!
+    </button>
+  );
+};
+```

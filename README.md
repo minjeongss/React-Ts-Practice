@@ -9,4 +9,4 @@
 - [Recoil](https://github.com/minjeongss/React-Ts-Practice/tree/main/Recoil)
 - [Router](https://github.com/minjeongss/React-Ts-Practice/tree/main/Router)
 - [Redux](https://github.com/minjeongss/React-Ts-Practice/tree/main/Redux)
-- [Zustand]()
+- [Zustand](https://github.com/minjeongss/React-Ts-Practice/tree/main/Zustand)

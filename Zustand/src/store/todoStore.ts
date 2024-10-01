@@ -23,14 +23,14 @@ const useTodoStore = create<TodoStore>((set) => ({
       set((state) => ({
         todos: [...state.todos, { id: Date.now(), text, completed: false }],
       })),
-    removeTodo: (id) =>
-      set((state) => ({ todos: state.todos.filter((e) => e.id !== id) })),
     toggleTodo: (id) =>
       set((state) => ({
         todos: state.todos.map((e) =>
           e.id === id ? { ...e, completed: !e.completed } : e
         ),
       })),
+    removeTodo: (id) =>
+      set((state) => ({ todos: state.todos.filter((e) => e.id !== id) })),
     initTodo: () => set({ todos: [] }),
   },
 }));
