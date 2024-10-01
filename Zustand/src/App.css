@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input {
+  height: 2rem;
+}
+button {
+  width: 4rem;
+  height: 2rem;
+}
