@@ -10,3 +10,4 @@
 - [Router](https://github.com/minjeongss/React-Ts-Practice/tree/main/Router)
 - [Redux](https://github.com/minjeongss/React-Ts-Practice/tree/main/Redux)
 - [Zustand](https://github.com/minjeongss/React-Ts-Practice/tree/main/Zustand)
+- [TanStackQeury(react-query)](https://github.com/minjeongss/React-Ts-Practice/tree/main/TanStackQuery)
