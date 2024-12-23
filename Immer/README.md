@@ -4,7 +4,8 @@
 
 - [Immer 공식 자료](https://immerjs.github.io/immer/)
 - [Immer의 원리 분석](https://ui.toast.com/weekly-pick/ko_20220217?ref=codenary)
-- [Proxy](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+- [Immer의 원리 분석 - Proxy](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+- [Zustand에서 Immer 사용하는 방법](https://www.heropy.dev/p/n74Tgc)
 
 ## React의 불변성 유지
 
