@@ -1,8 +1,8 @@
-import { produce } from "immer";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { useImmer } from "use-immer";
 
-const UseStateVersion = () => {
-  const [todos, setTodos] = useState([
+const UseImmerVersion = () => {
+  const [todos, setTodos] = useImmer([
     {
       id: "React",
       title: "Learn React",
@@ -16,26 +16,22 @@ const UseStateVersion = () => {
   ]);
 
   const handleToggle = useCallback((id: string) => {
-    setTodos(
-      produce((draft) => {
-        const todo = draft.find((todo) => todo.id === id);
-        if (todo) {
-          todo.done = !todo.done;
-        }
-      })
-    );
+    setTodos((draft) => {
+      const todo = draft.find((todo) => todo.id === id);
+      if (todo) {
+        todo.done = !todo.done;
+      }
+    });
   }, []);
 
   const handleAdd = useCallback(() => {
-    setTodos(
-      produce((draft) => {
-        draft.push({
-          id: "new todo",
-          title: "A new todo",
-          done: false,
-        });
-      })
-    );
+    setTodos((draft) => {
+      draft.push({
+        id: "new todo",
+        title: "A new todo",
+        done: false,
+      });
+    });
   }, []);
 
   return (
@@ -52,4 +48,4 @@ const UseStateVersion = () => {
   );
 };
 
-export default UseStateVersion;
+export default UseImmerVersion;
