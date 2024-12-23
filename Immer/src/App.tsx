@@ -1,5 +1,11 @@
+import UseStateVersion from "./UseStateVersion";
+
 function App() {
-  return <>immer!</>;
+  return (
+    <>
+      <UseStateVersion />
+    </>
+  );
 }
 
 export default App;
