@@ -84,6 +84,8 @@ const proxy1 = new Proxy(target, handler);
 
 ## React에서 Immer 사용하는 방법
 
-- [useState에 produce 사용]()
-- [useState 대신 useImmer 사용]()
-- [zustand에 produce 사용]()
+- [useState에 produce 사용](https://github.com/minjeongss/React-Ts-Practice/tree/main/Immer/src/components/UseStateVersion.tsx)
+- [useState 대신 useImmer 사용](https://github.com/minjeongss/React-Ts-Practice/tree/main/Immer/src/components/UseImmerVersion.tsx)
+- zustand에 immer 사용
+  - [스프레드 연산자 사용 zustand](https://github.com/minjeongss/React-Ts-Practice/tree/main/Immer/src/store/originUserStore.ts)
+  - [Immer 사용 zustand](https://github.com/minjeongss/React-Ts-Practice/tree/main/Immer/src/store/immerUserStore.ts)
