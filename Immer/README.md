@@ -37,7 +37,7 @@ Immer는 이러한 문제를 개선하며 불변성을 쉽게 유지하도록 �
 
 - 수정할 상태, 상태 업데이트 함수가 존재하는 버전
 
-```jsx
+```js
 const nextState = produce(baseState, (draft) => {
   draft.push({ title: "Tweet about it" });
 });
@@ -45,7 +45,7 @@ const nextState = produce(baseState, (draft) => {
 
 - 상태 업데이트 함수, 파라미터가 존재하는 버전
 
-```jsx
+```js
 const toggleTodo = produce((draft, id) => {
   const todo = draft.find((todo) => todo.id === id);
   todo.done = !todo.done;
@@ -58,4 +58,31 @@ const nextState = toggleTodo(baseState, 'Immer');
 
 ## Immer의 원리
 
+프록시(Proxy) 객체를 이용해 원본 객체 대신 프록시 객체를 복사하고 변경하여 사용하게 된다.
+
+### Proxy 객체
+
+원본 객체를 대신 사용할 수 있는 객체를 만들지만, 객체의 속성 또는 설정 또는 정의와 같은 부분을 재정의할 수 있다.
+
+- target: 원본 객체
+- handler: 원본 객체를 가져와 재정의하는 방법에 대한 객체
+
+```js
+const proxy1 = new Proxy(target, handler);
+```
+
+### Immer 과정
+
+1. Proxy를 사용해 수정 가능한 초안 객체 생성
+   - 값을 읽을 때, `get 트랩` 호출
+   - 값 변경할 때, `set 트랩` 호출
+2. Proxy를 통해 생성된 초안 객체 사용자에게 전달(recipe 함수)
+3. 수정된 부분을 기준으로 원본 객체 복사본 생성
+   - 원본 객체를 수정 X
+   - 항상 복사본을 생성 O
+
 ## React에서 Immer 사용하는 방법
+
+- [useState에 produce 사용]()
+- [useState 대신 useImmer 사용]()
+- [zustand에 produce 사용]()
