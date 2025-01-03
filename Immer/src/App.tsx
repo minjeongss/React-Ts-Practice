@@ -1,5 +1,5 @@
-import UseImmerVersion from "./UseImmerVersion";
-import UseStateVersion from "./UseStateVersion";
+import UseImmerVersion from "./components/UseImmerVersion";
+import UseStateVersion from "./components/UseStateVersion";
 
 function App() {
   return (
