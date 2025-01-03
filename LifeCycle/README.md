@@ -7,12 +7,29 @@
 - [리액트 라이프 사이클3](https://laurent.tistory.com/entry/React-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-%EC%83%9D%EB%AA%85-%EC%A3%BC%EA%B8%B0Life-Cycle)
 - [함수형 컴포넌트 라이프 사이클](https://yooneeee.tistory.com/45)
 - [리액트 라이프 사이클 다이어그램](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+- [라이프 사이클 단계](https://goidle.github.io/react/in-depth-react-intro/)
 
 ## 라이프 사이클 순서
 
 1. 생성(mount)
 2. 업데이트(update)
 3. 제거(unmount)
+
+## 라이프 사이클 단계
+
+1. Render 단계
+
+Virtual DOM 반영 단계이다.
+reconciler가 컴포넌트의 변경을 DOM에 적용하기 위한 Work를 스케줄러를 통해 실행하게 된다.
+
+유의 사항은 페인트되어 화면에 반영되는 것은 아니고, Virtual DOM에 반영만 된다.
+
+2. Commit 단계
+
+Virtual DOM을 DOM에 적용하고, 라이프 사이클을 실행하는 단계이다.
+
+유의 사항은 페인트되어 화면에 반영되는 것은 아니고, DOM에 반영만 된다.
+해당 단계가 끝난 후, 콜 스택을 비워야지 페인트되어 화면에 반영된다.
 
 ## 라이프 사이클 분류
 
