@@ -3,7 +3,8 @@
 ### 리액트 기본
 
 - [LifeCycle](https://github.com/minjeongss/React-Ts-Practice/tree/main/LifeCycle)
-- [Component](https://github.com/minjeongss/React-Ts-Practice/tree/main/Component): VanillaJS로 웹 컴포넌트 만들기
+- [Component](https://github.com/minjeongss/React-Ts-Practice/tree/main/Component)
+- [Component_VanillaJS](https://github.com/minjeongss/React-Ts-Practice/tree/main/Component_VanillaJSVersion): VanillaJS로 웹 컴포넌트 만들기
 - [useState](https://github.com/minjeongss/React-Ts-Practice/tree/main/useState)
 - [useEffect](https://github.com/minjeongss/React-Ts-Practice/tree/main/useEffect)
 - [useContext](https://github.com/minjeongss/React-Ts-Practice/tree/main/useContext)
