@@ -10,6 +10,17 @@
 - 타이머 설정
 - 데이터 가져오기
 
+## useEffect VS useLayoutEffect
+
+- useEffect
+  - 비동기적으로, 렌더링 후에 호출
+  - 네트워크 요청, DOM 접근, 비동기 작업
+- useLayoutEffect
+  - 동기적으로, 렌더링 전에 호출
+  - 애니메이션 구현, 성능 모니터링 기능 사용
+
+주로 useEffect을 사용하고, 성능 문제가 발생할 때에만 useLayoutEffect를 사용하면 된다.
+
 ## 구조
 
 - effect: 부수 효과 실행하는 부분
@@ -33,7 +44,7 @@ useEffect(()=>{
 
 ```ts
 useEffect(() => {
-  alert('Component has been rendered or updated');
+  alert("Component has been rendered or updated");
 });
 ```
 
@@ -41,7 +52,7 @@ useEffect(() => {
 
 ```ts
 useEffect(() => {
-  alert('Count or Text Changed!');
+  alert("Count or Text Changed!");
 }, [count, text]);
 ```
 
@@ -56,7 +67,7 @@ useEffect(() => {
   }, 1000);
   return () => {
     clearInterval(timer);
-    alert('Timer cleared!');
+    alert("Timer cleared!");
   };
 }, []);
 ```
@@ -66,7 +77,9 @@ useEffect(() => {
 ```ts
 useEffect(() => {
   const fetchData = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/1"
+    );
     const result: Data = await response.json();
     setData(result);
   };
@@ -87,7 +100,7 @@ useEffect(() => {
   } else {
     isMounted.current = true;
   }
-  console.log('K');
+  console.log("K");
 }, [clicked]);
 ```
 
