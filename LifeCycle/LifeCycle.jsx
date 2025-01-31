@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useAPI from "./useAPI";
-const ComponentLiftCycle = () => {
+const LifeCycle = () => {
   const { id } = useParams();
   const user = useAPI({ id });
   return (
@@ -11,4 +11,4 @@ const ComponentLiftCycle = () => {
   );
 };
 
-export default ComponentLiftCycle;
+export default LifeCycle;
